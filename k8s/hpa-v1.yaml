@@ -1,0 +1,14 @@
+# apiVersion: autoscaling/v1
+# kind: HorizontalPodAutoscaler
+
+# metadata:
+#   name: app-ts-hpa
+
+# spec:
+#   scaleTargetRef: # Precisamos passa a Referência/target do Deployment que queremos escalar
+#     apiVersion: apps/v1
+#     kind: Deployment
+#     name: app-ts
+#   minReplicas: 3
+#   maxReplicas: 8
+#   targetCPUUtilizationPercentage: 75 # O HPA irá monitorar a utilização de CPU dos Pods e irá escalar o número de réplicas para manter a utilização média em torno de 50%
