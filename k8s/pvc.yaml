@@ -1,16 +1,16 @@
-apiVersion: v1
-kind: PersistentVolumeClaim
+# apiVersion: v1
+# kind: PersistentVolumeClaim
 
-metadata:
-  name: first-pvc
+# metadata:
+#   name: first-pvc
 
-spec:
-  resources:
-    requests:
-      storage: 1Gi # 1 gb referente a todos os pods que usarem esse pvc
-  storageClassName: standard
-  accessModes:
-    - ReadWriteOnce
-  selector:
-    matchLabels:
-      name: first-pv
+# spec:
+#   resources:
+#     requests:
+#       storage: 1Gi # 1 gb referente a todos os pods que usarem esse pvc
+#   storageClassName: standard
+#   accessModes:
+#     - ReadWriteOnce
+#   selector:
+#     matchLabels:
+#       name: first-pv

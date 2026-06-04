@@ -14,4 +14,9 @@ export class AppController {
   getExample(): string {
     return this.appService.getExample();
   }
+
+  @Get('/revisao')
+  getRevisao(): string {
+    return this.appService.getHello();
+  }
 }

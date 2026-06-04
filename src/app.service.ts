@@ -6,8 +6,10 @@ export class AppService {
   getHello(): string {
     console.log(process.env.APP);
     console.log(process.env.API_KEY);
-    return 'Hello World!';
+    console.log(process.env.REVISAO);
+    return 'Hello World! ' + process.env.REVISAO;
   }
+
   getExample(): string {
     const file = createWriteStream('rocketseat.txt');
     for (let i = 0; i < 10000; i++) {
