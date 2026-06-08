@@ -7,7 +7,9 @@ export class AppService {
     console.log(process.env.APP);
     console.log(process.env.API_KEY);
     console.log(process.env.REVISAO);
-    return 'Hello World! ' + process.env.REVISAO;
+    return process.env.REVISAO
+      ? `Hello World! ${process.env.REVISAO}`
+      : 'Hello World!';
   }
 
   getExample(): string {
