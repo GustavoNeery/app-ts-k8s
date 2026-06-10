@@ -33,4 +33,16 @@ jobs:
           echo "sha=$SHA" >> $GITHUB_OUTPUT
 
       - name: Build container image
-        run: docker build -t gustavoneery/app-ts:${{ steps.generate_tag.outputs.sha }} .
+        run: docker build -t ${{ vars.IMAGE_BASE_NAME }}:${{ steps.generate_tag.outputs.sha }} .
+
+      - name: Login to ContainerRegistry
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Push image
+        run: |
+          docker push ${{ vars.IMAGE_BASE_NAME }}:${{ steps.generate_tag.outputs.sha }}
+          docker tag ${{ vars.IMAGE_BASE_NAME }}:${{ steps.generate_tag.outputs.sha }} ${{ vars.IMAGE_BASE_NAME }}:latest
+          docker push ${{ vars.IMAGE_BASE_NAME }}:latest
