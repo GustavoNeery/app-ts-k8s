@@ -5,6 +5,10 @@ on:
     branches: 
       - main
 
+permissions:
+  contents: write
+  id-token: write
+
 jobs:
   build:
     name: 'Build, Push and Deployment'
@@ -52,3 +56,6 @@ jobs:
         with:
           role-to-assume: ${{ vars.AWS_ROLE_TO_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
+      
+      # - name: Update kubeconfig
+      #   run: aws eks update-kubeconfig --name ${{ vars.CLUSTER_NAME }} --region ${{ vars.AWS_REGION }}
