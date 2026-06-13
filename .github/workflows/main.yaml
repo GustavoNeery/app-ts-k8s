@@ -59,3 +59,8 @@ jobs:
       
       # - name: Update kubeconfig
       #   run: aws eks update-kubeconfig --name ${{ vars.CLUSTER_NAME }} --region ${{ vars.AWS_REGION }}
+
+      # - name: Deploy to K8S
+      #   run: |
+      #     sed -i "s|TAG_IMAGE|${{ steps.generate_tag.outputs.sha }}|g" k8s/deployment.yaml
+      #     kubectl appy -f k8s/deployment.yaml
