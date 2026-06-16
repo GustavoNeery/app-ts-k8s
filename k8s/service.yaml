@@ -3,6 +3,8 @@ kind: Service
 
 metadata:
   name: app-ts-svc
+  namespace: app
+
 
 spec:
   type: ClusterIP

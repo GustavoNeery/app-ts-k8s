@@ -3,6 +3,7 @@ kind: ConfigMap
 
 metadata:
   name: app-ts
+  namespace: app
 data:
   APP: lula-nery
   REVISAO: estou-revisando

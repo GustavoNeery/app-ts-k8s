@@ -3,6 +3,8 @@ kind: HorizontalPodAutoscaler
 
 metadata:
   name: app-ts-hpa
+  namespace: app
+
 
 spec:
   scaleTargetRef:
