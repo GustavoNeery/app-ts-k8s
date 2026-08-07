@@ -21,10 +21,20 @@ spec:
       labels:
         api: app-ts
     spec:
+    securityContext:
+      runAsUser: 1000
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
       containers:
         - name: app-ts
-          image: gustavoneery/app-ts:v10
+          image: gustavoneery/app-ts:e784dc7
           imagePullPolicy: IfNotPresent
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
           envFrom:
             - configMapRef:
                 name: app-ts
