@@ -1,56 +1,56 @@
-apiVersion: apps/v1
-kind: StatefulSet
+# apiVersion: apps/v1
+# kind: StatefulSet
 
-metadata:
-  name: postgres
+# metadata:
+#   name: postgres
 
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: postgres
-  template:
-    metadata:
-      labels:
-        app: postgres
-    spec:
-      containers:
-        - name: postgres
-          image: postgres:latest
-          env:
-            - name: POSTGRES_USER
-              value: postgres
-            - name: POSTGRES_PASSWORD
-              value: senha123
-            - name: PGDATA
-              value: /var/lib/postgresql/data
-          ports:
-            - containerPort: 5432
-          volumeMounts:
-            - name: pg-data
-              mountPath: /var/lib/postgresql/data
-              subPath: data
-  volumeClaimTemplates:
-    - metadata:
-        name: pg-data
-      spec:
-        storageClassName: standard
-        accessModes: ["ReadWriteOnce"]
-        resources:
-          requests:
-            storage: 1Gi
----
+# spec:
+#   replicas: 2
+#   selector:
+#     matchLabels:
+#       app: postgres
+#   template:
+#     metadata:
+#       labels:
+#         app: postgres
+#     spec:
+#       containers:
+#         - name: postgres
+#           image: postgres:latest
+#           env:
+#             - name: POSTGRES_USER
+#               value: postgres
+#             - name: POSTGRES_PASSWORD
+#               value: senha123
+#             - name: PGDATA
+#               value: /var/lib/postgresql/data
+#           ports:
+#             - containerPort: 5432
+#           volumeMounts:
+#             - name: pg-data
+#               mountPath: /var/lib/postgresql/data
+#               subPath: data
+#   volumeClaimTemplates:
+#     - metadata:
+#         name: pg-data
+#       spec:
+#         storageClassName: standard
+#         accessModes: ["ReadWriteOnce"]
+#         resources:
+#           requests:
+#             storage: 1Gi
+# ---
 
-apiVersion: v1
-kind: Service
+# apiVersion: v1
+# kind: Service
 
-metadata:
-  name: postgres-svc
+# metadata:
+#   name: postgres-svc
 
-spec:
-  clusterIP: None
-  selector:
-    app: postgres
-  ports:
-    - port: 5432
-      targetPort: 5432
+# spec:
+#   clusterIP: None
+#   selector:
+#     app: postgres
+#   ports:
+#     - port: 5432
+#       targetPort: 5432
