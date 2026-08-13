@@ -28,7 +28,7 @@ spec:
         type: RuntimeDefault
       containers:
         - name: app-ts
-          image: gustavoneery/app-ts:e784dc7
+          image: gustavoneery/app-ts:0fa1ea1
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false
@@ -93,3 +93,4 @@ spec:
       #   - name: app-ts-data
       #     persistentVolumeClaim:
       #       claimName: first-pvc
+      # apenas pra atualizar
