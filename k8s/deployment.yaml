@@ -21,11 +21,11 @@ spec:
       labels:
         api: app-ts
     spec:
-    securityContext:
-      runAsUser: 1000
-      runAsNonRoot: true
-      seccompProfile:
-        type: RuntimeDefault
+      securityContext:
+        runAsUser: 1000
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: app-ts
           image: gustavoneery/app-ts:0fa1ea1
