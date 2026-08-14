@@ -1,11 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: app-ts
   namespace: app
-
-
 spec:
   replicas: 5
   strategy:
@@ -20,7 +17,7 @@ spec:
     metadata:
       labels:
         api: app-ts
-    spec:
+    spec: null
     securityContext:
       runAsUser: 1000
       runAsNonRoot: true
@@ -40,28 +37,17 @@ spec:
                 name: app-ts
             - secretRef:
                 name: app-ts-secrets
-          # env:
-          #   - name: APP # Nome da variável de ambiente
-          #     valueFrom:
-          #       configMapKeyRef:
-          #         name: app-ts # Nome do nosso ConfigMap
-          #         key: app-name
-          #   - name: API_KEY
-          #     valueFrom:
-          #       secretKeyRef:
-          #         name: app-ts-secrets
-          #         key: api-key
           ports:
             - containerPort: 3000
           startupProbe:
             httpGet:
-              path: /healthz # Endpoint para verificar se a aplicação está pronta para receber tráfego
-              port: 3000 # A mesma porta do container
-            failureThreshold: 3 # O quanto de falha a gente toléra
-            successThreshold: 1 # Ter pelo menos 1 sucesso para considerar a aplicação saudável
-            timeoutSeconds: 1 # Tempo para considerar a aplicação como não saudável
-            periodSeconds: 10 # A cada 10 segundos, as verificações acima serão feitas
-            initialDelaySeconds: 10 # caso a aplicação demore pra iniciar aumenta esse tempo
+              path: /healthz
+              port: 3000
+            failureThreshold: 3
+            successThreshold: 1
+            timeoutSeconds: 1
+            periodSeconds: 10
+            initialDelaySeconds: 10
           readinessProbe:
             httpGet:
               path: /readyz
@@ -86,11 +72,7 @@ spec:
             limits:
               cpu: 200m
               memory: 192Mi
-          # volumeMounts:
-          #   - name: app-ts-data
-          #     mountPath: /usr/src/app/uploads
-      # volumes:
-      #   - name: app-ts-data
-      #     persistentVolumeClaim:
-      #       claimName: first-pvc
-      # apenas pra atualizar
+  tamplate:
+    spec:
+      containers:
+        - image: 062af6a
