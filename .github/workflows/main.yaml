@@ -50,14 +50,14 @@ jobs:
           docker push ${{ vars.IMAGE_BASE_NAME }}:${{ steps.generate_tag.outputs.sha }}
           docker tag ${{ vars.IMAGE_BASE_NAME }}:${{ steps.generate_tag.outputs.sha }} ${{ vars.IMAGE_BASE_NAME }}:latest
           docker push ${{ vars.IMAGE_BASE_NAME }}:latest
-          
+
       - name: Update image tag
         uses: fjogeleit/yaml-update-action@main
         with:
-          branch: main
+          branch: 'main'
           valueFile: 'k8s/deployment.yaml'
-          propertyPath: 'spec.tamplate.spec.containers[0].image'
-          value: '${{ steps.generate_tag.outputs.sha }}'
+          propertyPath: 'spec.template.spec.containers[0].image'
+          value: 'GustavoNeery/app-ts-k8s:${{ steps.generate_tag.outputs.sha }}'
           commitChange: True
           message: 'new: update image tag'
 
